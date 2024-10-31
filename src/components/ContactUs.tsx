@@ -7,7 +7,7 @@ const ContactUs = ({
   
 }) => {
   return (
-    <div className="bg-[#ace0f1] py-[40px] 2xl:h-[200px]">
+    <div className="bg-[#6ecccc] py-[40px] 2xl:h-[200px]">
       <div className="text-center mb-[35px] font-bold text-3xl text-[#0a1127]">ارتباط با ما</div>
       <div className="flex justify-center gap-4">
         <img src={social1} alt="" />

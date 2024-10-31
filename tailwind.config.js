@@ -6,7 +6,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        myYekan: ["myYekan", "sans-serif"],
+        myComforta: ["myComforta", "sans-serif"],
+        KalamehRegular: ["KalamehRegular", "sans-serif"],
+        KalamehBlack: ["KalamehBlack", "sans-serif"],
+        KalamehBold: ["KalamehBold", "sans-serif"],
       },
     },
   },

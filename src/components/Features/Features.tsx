@@ -7,11 +7,12 @@ const Features: React.FC<FeaturesProps> = ({
   children
 }) => {
   return (
-    <div className="bg-[#ace0f1] py-[70px] 2xl:h-[560px]">
-      <div className="text-center mb-[100px] font-bold text-5xl text-[#0a1127]">ویژگی ها</div>
-      <div className="flex justify-center">
+    <div className="bg-[#6ecccc] mt-[50px] py-[70px] 2xl:h-[560px]">
+      <div className="text-center mb-[100px] font-KalamehBold text-5xl text-[#0a1127]">ویژگی ها</div>
+      <div className="flex flex-col items-center lg:flex-row lg:justify-center">
         {children}
       </div>
+      
     </div>
   );
 };

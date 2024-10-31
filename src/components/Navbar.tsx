@@ -1,25 +1,72 @@
-const Navbar: React.FC = () => {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+interface NavbarProps {
+  brandName: string;
+}
+
+const Navbar = ({ brandName }: NavbarProps) => {
+  const navigate = useNavigate();
+  const [clickedButton, setClickedButton] = useState<string | null>(null);
+
+  const handleButton = (buttonName: string) => {
+    setClickedButton(buttonName);
+  };
+
   return (
     <nav
-      className="flex justify-center font-bold text-[#0a1127] bg-[#ace0f1] h-[67px]"
+      className="lg:flex lg:w-full lg:justify-between font-bold text-[#0a1127] h-[67px]  md:px-[160px]"
       dir="rtl"
     >
-      <div className="flex my-auto">
-        <button>
-          {" "}
-          <div className="ml-24 text-lg">درباره هوشا</div>
+      <div className="text-center align-baseline my-auto font-myComforta text-3xl">
+        {brandName}
+      </div>
+
+      <div className="hidden lg:flex justify-between gap-8 my-auto text-[22px] font-KalamehBold">
+      <button
+          onClick={() => {
+            handleButton("صفحه اصلی");
+            navigate("/");
+          }}
+          className={`${
+            clickedButton === "صفحه اصلی"
+              ? "text-[#6ecccc] underline underline-offset-8"
+              : ""
+          }`}
+        >
+          <div className="">صفحه اصلی</div>
         </button>
-        <button>
-          {" "}
-          <div className="ml-24 text-lg">سرویس ها</div>
+        <button
+          onClick={() => {
+            handleButton("؟چرا هوشا");
+            navigate("/why-hoosha");
+          }}
+          className={`${
+            clickedButton === "؟چرا هوشا"
+              ? "text-[#6ecccc] underline underline-offset-8"
+              : ""
+          }`}
+        >
+          <div className="">چرا هوشا؟</div>
         </button>
-        <button>
-          {" "}
-          <div className="ml-24 text-lg">درباره ما</div>
+        <button
+          onClick={() => {
+            handleButton("درباره هوشا");
+            navigate("/aboutHoosha");
+          }}
+          className={`${
+            clickedButton === "درباره هوشا"
+              ? "text-[#6ecccc] underline underline-offset-8"
+              : ""
+          }`}
+        >
+          <div>درباره هوشا</div>
         </button>
-        <button>
-          {" "}
-          <div className="ml-24 text-lg">تماس با ما</div>
+      </div>
+
+      <div>
+        <button className="hidden lg:flex w-[114px] h-[54px] bg-[#6ecccc] text-[22px] mt-2 pt-2 pr-3 rounded-lg ">
+          ارتباط با ما
         </button>
       </div>
     </nav>
