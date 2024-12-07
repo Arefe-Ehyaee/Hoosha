@@ -23,7 +23,7 @@ const Navbar = ({ brandName }: NavbarProps) => {
       </div>
 
       <div className="hidden lg:flex justify-between gap-8 my-auto text-[22px] font-KalamehBold">
-      <button
+        <button
           onClick={() => {
             handleButton("صفحه اصلی");
             navigate("/");
@@ -61,6 +61,20 @@ const Navbar = ({ brandName }: NavbarProps) => {
           }`}
         >
           <div>درباره هوشا</div>
+        </button>
+
+        <button
+          onClick={() => {
+            handleButton("چت");
+            navigate("/chat");
+          }}
+          className={`${
+            clickedButton === "چت"
+              ? "text-[#6ecccc] underline underline-offset-8"
+              : ""
+          }`}
+        >
+          <div className="">چت</div>
         </button>
       </div>
 
