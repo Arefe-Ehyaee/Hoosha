@@ -26,7 +26,7 @@ export default function Chat() {
   
       try {
         // Send the message to the correct backend (running on port 32336)
-        const response = await fetch("http://193.149.164.131:32336/chat", {
+        const response = await fetch("/api/proxy", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user_message: message, user: "علیرضا" }),
