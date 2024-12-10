@@ -37,3 +37,10 @@ app.get('/api/get-messages', (req, res) => {
 });
 
 module.exports = serverless(app); // Export as a serverless function
+
+
+const PORT = process.env.PORT || 3001;  // Default to port 3001 or use an environment variable if set
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

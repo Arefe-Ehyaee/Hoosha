@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Chat() {
   const [enteredMessage, setEnteredMessage] = useState("");
-  const [messages, setMessages] = useState<{ id: number; message: string; timestamp: string }[]>([]);
+  const [messages, setMessages] = useState<{ id: number; message: string; response: string; timestamp: string }[]>([]);
 
     // Fetch messages from the database
     useEffect(() => {
@@ -19,32 +19,35 @@ export default function Chat() {
     setEnteredMessage(event.target.value);
   }
 
-  function handleSubmit() {
 
+  async function handleSubmit() {
     if (enteredMessage.trim() !== "") {
       const message = enteredMessage;
   
-      // Send the message to the correct backend (running on port 3001)
-      fetch("http://localhost:3001/api/add-message", {  // Make sure this is port 3001
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            // Append the new message locally after submission
-            setMessages((prevMessages) => [
-              ...prevMessages,
-              { id: Date.now(), message, timestamp: new Date().toISOString() },
-            ]);
-            setEnteredMessage("");
-          } else {
-            return response.json().then((data) => {
-              console.error("Error:", data.error || "Failed to send message");
-            });
-          }
-        })
-        .catch((err) => console.error("Failed to send message:", err));
+      try {
+        // Send the message to the correct backend (running on port 32336)
+        const response = await fetch("http://193.149.164.131:32336/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user_message: message, user: "علیرضا" }),
+        });
+  
+        if (response.ok) {
+          const responseData: { response: string } = await response.json();
+          // If the response is successful, update the messages state
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            // { id: Date.now(), message: message, timestamp: new Date().toISOString() },
+            { id: Date.now() , message: message, response:responseData.response, timestamp: new Date().toISOString() },
+          ]);
+          setEnteredMessage("");  // Clear the input field
+        } else {
+          const data = await response.json();
+          console.error("Error:", data.error || "Failed to send message");
+        }
+      } catch (err) {
+        console.error("Failed to send message:", err);
+      }
     }
   }
   
@@ -78,7 +81,7 @@ export default function Chat() {
                   {msg.message} <br />
                   <small>{new Date(msg.timestamp).toLocaleString()}</small>
                 </div>
-                <div className="text-left p-2 bg-yellow-200">{msg.message}</div>
+                <div className="text-left p-2 bg-yellow-200">{msg.response}</div>
               </div>
             ))}
           </div>
