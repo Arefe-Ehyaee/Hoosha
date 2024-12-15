@@ -1,6 +1,5 @@
 import MainContent from "./MainContent";
 import Navbar from "./Navbar";
-import device from "../assets/Images/device.webp"
 import Features from "./Features/Features";
 import FeatureBox from "./Features/FeatureBox";
 import ContactUs from "./ContactUs";

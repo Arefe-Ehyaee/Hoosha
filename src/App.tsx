@@ -4,7 +4,10 @@ import Mainpage from "./components/Mainpage";
 import WhyHoosha from "./components/Pages/whyHoosha";
 import AboutHoosha from "./components/Pages/AboutHoosha";
 import AboutUs from "./components/Pages/AboutUs";
-import Chat from "./components/Pages/Chat";
+import Voice from "./components/Pages/Voice";
+import ChatMain from "./components/Pages/ChatMain";
+import ChatText from "./components/Pages/ChatText";
+import VoiceChat from "./components/Pages/Voice";
 
 
 export default function App() {
@@ -17,7 +20,10 @@ export default function App() {
             <Route path="/why-hoosha" element={<WhyHoosha />} />
             <Route path="/aboutHoosha" element={<AboutHoosha />} />
             <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat" element={<ChatMain />} />
+            <Route path="/voice" element={<Voice />} />
+            <Route path="/textChat" element={<ChatText />} />
+            <Route path="/voiceChat" element={<VoiceChat />} />
           </Routes>
         </BrowserRouter>
     </div>

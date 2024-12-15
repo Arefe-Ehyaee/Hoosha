@@ -76,6 +76,7 @@ const Navbar = ({ brandName }: NavbarProps) => {
         >
           <div className="">چت</div>
         </button>
+
       </div>
 
       <div>

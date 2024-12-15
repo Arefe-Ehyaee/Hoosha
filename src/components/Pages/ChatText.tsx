@@ -3,17 +3,17 @@ import Navbar from "../Navbar";
 import send from "../../assets/Images/arrow.png";
 import { useEffect, useState } from "react";
 
-export default function Chat() {
+export default function ChatText() {
   const [enteredMessage, setEnteredMessage] = useState("");
   const [messages, setMessages] = useState<{ id: number; message: string; response: string; timestamp: string }[]>([]);
 
     // Fetch messages from the database
-    useEffect(() => {
-      fetch("/api/get-messages")
-        .then((response) => response.json())
-        .then((data) => setMessages(data))
-        .catch((err) => console.error("Failed to load messages:", err));
-    }, []);
+    // useEffect(() => {
+    //   fetch("/api/get-messages")
+    //     .then((response) => response.json())
+    //     .then((data) => setMessages(data))
+    //     .catch((err) => console.error("Failed to load messages:", err));
+    // }, []);
     
   function handleSendMessage(event: React.ChangeEvent<HTMLInputElement>): void {
     setEnteredMessage(event.target.value);
@@ -26,7 +26,7 @@ export default function Chat() {
   
       try {
         // Send the message to the correct backend (running on port 32336)
-        const response = await fetch("http://193.149.164.131:32336/chat", {
+        const response = await fetch("https://2.177.92.229:443/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user_message: message, user: "علیرضا" }),
@@ -71,6 +71,11 @@ export default function Chat() {
             placeholder="چطور میتونم کمکت کنم؟"
             value={enteredMessage}
             onChange={handleSendMessage}
+            onKeyDown={(event) => {
+              if (event.key == "Enter") {
+                handleSubmit();
+              }
+            }}
           />
         </div>
         <div className="bg-white w-[40%] text-center mx-auto py-5">
